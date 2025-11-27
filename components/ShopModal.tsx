@@ -9,6 +9,8 @@ interface ShopModalProps {
   onPurchase: (item: ShopItem) => void;
   onReroll: () => void;
   onContinue: () => void;
+  wave: number;
+  timeLeft: number;
 }
 
 const RARITY_COLORS = {
@@ -40,13 +42,21 @@ const ICONS: Record<string, any> = {
   timeslow: Zap,
 };
 
-export const ShopModal = ({ coins, items, onPurchase, onReroll, onContinue }: ShopModalProps) => {
+export const ShopModal = ({ coins, items, onPurchase, onReroll, onContinue, wave, timeLeft }: ShopModalProps) => {
+  const timeBonus = Math.floor((30 - timeLeft) * 5);
+  const isEarlyClear = timeLeft < 30 && timeLeft > 0;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md">
       <div className="w-full max-w-6xl p-8 flex flex-col gap-8">
         {/* Header */}
         <div className="text-center">
-          <h3 className="text-5xl font-bold text-white mb-4">SHOP</h3>
+          <h3 className="text-5xl font-bold text-white mb-2">WAVE {wave} CLEARED</h3>
+          {isEarlyClear && (
+            <div className="text-green-400 font-bold text-xl mb-2 animate-pulse">
+              EARLY CLEAR! +{timeBonus} COINS
+            </div>
+          )}
           <div className="flex items-center justify-center gap-3 text-2xl font-bold text-yellow-400">
             <Coins size={32} className="fill-current" />
             <span>{coins}</span>

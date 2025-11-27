@@ -37,6 +37,15 @@ export const TypingGame = () => {
   } = useBlockGame();
   
   const [isFocused, setIsFocused] = useState(true);
+  const [showBanner, setShowBanner] = useState(false);
+
+  useEffect(() => {
+    if (wave === 11 || wave === 21 || wave === 31) {
+      setShowBanner(true);
+      const timer = setTimeout(() => setShowBanner(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [wave]);
 
   useEffect(() => {
     const onFocus = () => setIsFocused(true);
@@ -61,7 +70,7 @@ export const TypingGame = () => {
       {/* Header / Stats */}
       <div className="w-full flex justify between items-end border-b border-surface pb-4 sticky top-0 bg-background/95 backdrop-blur z-50 pt-4">
         <div className="flex flex-col gap-1">
-          <h2 className="text-2xl font-bold text-primary">Type Defense</h2>
+          <h2 className="text-2xl font-bold text-primary">Type Infinity</h2>
           <div className="flex items-center gap-4 text-muted">
             <div className="flex items-center gap-2">
               <Shield size={16} />
@@ -112,6 +121,49 @@ export const TypingGame = () => {
             <span>TIME SLOW</span>
           </div>
         )}
+
+        {/* Difficulty Banners */}
+        <AnimatePresence>
+          {wave === 11 && gameState === "playing" && showBanner && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
+            >
+              <div className="bg-blue-600/90 text-white px-8 py-4 rounded-xl shadow-2xl border-4 border-blue-400 backdrop-blur-md">
+                <h3 className="text-4xl font-bold tracking-widest text-center">NORMAL MODE</h3>
+                <p className="text-center text-blue-100 font-bold mt-2">Enemies are stronger!</p>
+              </div>
+            </motion.div>
+          )}
+          {wave === 21 && gameState === "playing" && showBanner && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
+            >
+              <div className="bg-purple-600/90 text-white px-8 py-4 rounded-xl shadow-2xl border-4 border-purple-400 backdrop-blur-md">
+                <h3 className="text-4xl font-bold tracking-widest text-center">HARD MODE</h3>
+                <p className="text-center text-purple-100 font-bold mt-2">Prepare yourself!</p>
+              </div>
+            </motion.div>
+          )}
+          {wave === 31 && gameState === "playing" && showBanner && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
+            >
+              <div className="bg-red-600/90 text-white px-8 py-4 rounded-xl shadow-2xl border-4 border-red-400 backdrop-blur-md animate-pulse">
+                <h3 className="text-4xl font-bold tracking-widest text-center">DEATH MODE</h3>
+                <p className="text-center text-red-100 font-bold mt-2">SURVIVE IF YOU CAN!</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <BlockGrid blocks={blocks} />
         
@@ -241,6 +293,8 @@ export const TypingGame = () => {
               onPurchase={purchaseItem}
               onReroll={rerollShop}
               onContinue={continueToNextWave}
+              wave={wave}
+              timeLeft={timeLeft}
             />
           </motion.div>
         )}
@@ -255,13 +309,13 @@ export const TypingGame = () => {
             exit={{ opacity: 0, y: 20 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-md"
           >
-            <div className="bg-surface border border-surface/50 p-12 rounded-2xl shadow-2xl flex flex-col items-center gap-8 max-w-md w-full">
+            <div className="bg-surface border border-surface/50 p-12 rounded-2xl shadow-2xl flex flex-col items-center gap-8 max-w-2xl w-full">
               <h3 className="text-3xl font-bold text-error">BASE DESTROYED</h3>
               
               <div className="grid grid-cols-2 gap-8 w-full">
-                <div className="flex flex-col items-center p-4 bg-background/50 rounded-xl">
+                <div className="flex flex-col items-center p-4 bg-background/50 rounded-xl w-full">
                   <span className="text-sm text-muted">Final Score</span>
-                  <span className="text-5xl font-bold text-secondary">{score.toLocaleString()}</span>
+                  <span className="text-3xl sm:text-4xl font-bold text-secondary whitespace-nowrap text-center leading-tight">{score.toLocaleString()}</span>
                 </div>
                 <div className="flex flex-col items-center p-4 bg-background/50 rounded-xl">
                   <span className="text-sm text-muted">Waves Cleared</span>

@@ -16,7 +16,28 @@ export const words = [
   "docker", "kubernetes", "aws", "azure", "gcp", "vercel", "netlify", "heroku", "firebase", "supabase",
   "git", "github", "gitlab", "bitbucket", "jira", "trello", "slack", "discord", "zoom", "teams",
   "vscode", "vim", "emacs", "sublime", "atom", "intellij", "eclipse", "xcode", "android", "ios",
-  "windows", "macos", "linux", "ubuntu", "debian", "fedora", "centos", "arch", "gentoo", "kali"
+  "windows", "macos", "linux", "ubuntu", "debian", "fedora", "centos", "arch", "gentoo", "kali",
+  "agile", "scrum", "kanban", "sprint", "backlog", "epic", "story", "standup", "retro", "demo",
+  "ci", "cd", "pipeline", "build", "test", "deploy", "release", "version", "tag", "branch",
+  "merge", "pull", "push", "commit", "clone", "fork", "remote", "origin", "master", "main",
+  "frontend", "fullstack", "devops", "sre", "qa", "dba", "sysadmin", "architect", "engineer", "developer",
+  "api", "rest", "graphql", "soap", "json", "xml", "yaml", "toml", "csv", "sql",
+  "nosql", "mongo", "redis", "postgres", "mysql", "sqlite", "oracle", "mssql", "cassandra", "neo4j",
+  "http", "https", "tcp", "udp", "ip", "dns", "dhcp", "ssh", "ftp", "smtp",
+  "jwt", "oauth", "sso", "ldap", "saml", "cors", "csrf", "xss", "ddos", "vpn",
+  "proxy", "loadbalancer", "cdn", "dns", "ssl", "tls", "cert", "key", "hash", "salt",
+  "crypto", "blockchain", "bitcoin", "ethereum", "wallet", "token", "nft", "defi", "dao", "web3",
+  "ai", "ml", "dl", "nlp", "cv", "rl", "nn", "gan", "gpt", "bert",
+  "tensor", "pytorch", "keras", "scikit", "pandas", "numpy", "jupyter", "colab", "kaggle", "huggingface",
+  "iot", "edge", "cloud", "fog", "serverless", "lambda", "function", "container", "pod", "cluster",
+  "mesh", "service", "ingress", "egress", "sidecar", "proxy", "gateway", "registry", "helm", "chart",
+  "monitor", "log", "trace", "metric", "alert", "dashboard", "grafana", "prometheus", "elk", "splunk",
+  "mobile", "responsive", "native", "hybrid", "pwa", "spa", "ssr", "ssg", "isr", "jamstack",
+  "css", "sass", "less", "stylus", "tailwind", "bootstrap", "bulma", "chakra", "mui", "antd",
+  "redux", "mobx", "zustand", "jotai", "recoil", "context", "hook", "effect", "state", "props",
+  "class", "interface", "type", "enum", "generic", "decorator", "module", "package", "bundle", "chunk",
+  "async", "await", "promise", "callback", "closure", "scope", "hoisting", "prototype", "this", "bind",
+  "call", "apply", "map", "filter", "reduce", "find", "some", "every", "sort", "slice"
 ];
 
 export const getRandomWord = (): string => {
